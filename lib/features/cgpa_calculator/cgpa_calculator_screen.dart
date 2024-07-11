@@ -1,4 +1,5 @@
-import 'package:class_catch/features/cgpa_calculator/course_meta_data.dart';
+import 'package:class_catch/features/cgpa_calculator/data/course_meta_data.dart';
+import 'package:class_catch/features/cgpa_calculator/data/courses_data.dart';
 import 'package:class_catch/features/cgpa_calculator/services/dropdown_wo_search.dart';
 
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class CgpaCalculatorScreen extends StatefulWidget {
 }
 
 class _CgpaCalculatorScreenState extends State<CgpaCalculatorScreen> {
-  List<String> cdcnames = compulsoryCoursesList
+  List<String> cdcnames = coursesData
       .map((map) => map['courseTitle'].toString())
       .toList();
   List<String> grades = ['A', 'A-', 'B', 'B-', 'C', 'C-', 'D', 'E'];
