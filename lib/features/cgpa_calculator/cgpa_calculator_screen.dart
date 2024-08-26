@@ -152,7 +152,7 @@ class _CgpaCalculatorScreenState extends State<CgpaCalculatorScreen> {
                     children: [
                       CircularPercentIndicator(
                         animation: true,
-                        animationDuration: 500,
+                        animationDuration: 750,
                         radius: 0.095 * screenHeight,
                         lineWidth: 10,
                         percent: (cgpa / 10),
@@ -183,7 +183,7 @@ class _CgpaCalculatorScreenState extends State<CgpaCalculatorScreen> {
                       ),
                       CircularPercentIndicator(
                         animation: true,
-                        animationDuration: 500,
+                        animationDuration: 750,
                         radius: 0.095 * screenHeight,
                         lineWidth: 10,
                         percent: (sgpa / 10),
