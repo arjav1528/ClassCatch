@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PomodoroTimer extends StatefulWidget {
@@ -53,6 +54,13 @@ class _PomodoroTimerState extends State<PomodoroTimer> {
 
   @override
   Widget build(BuildContext context) {
+    String remaininghours = _remainingSeconds~/3600>=10 ? (_remainingSeconds~/3600).toStringAsFixed(0) : '0${(_remainingSeconds~/3600).toStringAsFixed(0)}';
+    String remainminutes = ((_remainingSeconds%3600)~/60)>=10 ? ((_remainingSeconds%3600)~/60).toStringAsFixed(0) : '0${((_remainingSeconds%3600)~/60).toStringAsFixed(0)}';
+    String remainseconds = ((_remainingSeconds%3600)%60) >= 10 ? ((_remainingSeconds%3600)%60).toStringAsFixed(0) : '0${((_remainingSeconds%3600)%60).toStringAsFixed(0)}';
+    // print(remaininghours);
+    // print(remainminutes);
+    // print(remainseconds);
+    // String seconds = ;
     return Scaffold(
       // backgroundColor: Colors.black,
       appBar: AppBar(
@@ -62,7 +70,7 @@ class _PomodoroTimerState extends State<PomodoroTimer> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('${(_remainingSeconds~/60)>0 ? (_remainingSeconds~/ 60).toStringAsFixed(0) : '00'} : ${_remainingSeconds%60 !=0 ? '${_remainingSeconds%60}' : '00'}',
+            Text('$remaininghours : $remainminutes : $remainseconds',
             style: GoogleFonts.lexend(
               fontSize: 40
             ),),
@@ -104,6 +112,11 @@ class _PomodoroTimerState extends State<PomodoroTimer> {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   width: 100,
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
                     // initialValue: 'Hello',
                     controller: hours,
                     decoration: InputDecoration(
@@ -116,7 +129,12 @@ class _PomodoroTimerState extends State<PomodoroTimer> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   width: 100,
-                  child: TextField(
+                  child: TextFormField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
                     // initialValue: (_remainingSeconds/60).toStringAsFixed(0),
                     controller: minutes,
                     decoration: InputDecoration(
@@ -130,6 +148,11 @@ class _PomodoroTimerState extends State<PomodoroTimer> {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   width: 100,
                   child: TextFormField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
                     // initialValue: (_remainingSeconds%60).toStringAsFixed(0),
                     controller: seconds,
                     decoration: InputDecoration(
